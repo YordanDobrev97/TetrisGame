@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+body{
+    background-color: rgb(7, 161, 189);
+}
+
+h1 {
+    text-align: center;
+    padding: 35px;
+}
+
+#game {
+    padding: 16px;
+    width: 150px;
+    margin: 25px 50px;
+    text-align: center;
+    position:relative;
+    height:100px; 
+    top:1%; 
+    left:42%;
+}
+
+#container {
+    border-style: groove;
+    height: 430px;
+    background-color: steelblue;
+}
