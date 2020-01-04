@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 body{
-    background-color: rgb(7, 161, 189);
+    background: rgb(7, 161, 189);
 }
 
 h1 {
@@ -21,7 +21,8 @@ h1 {
 }
 
 #container {
+    display:flex;
     border-style: groove;
     height: 430px;
-    background-color: steelblue;
+    background-color: rgb(194, 212, 228);
 }
