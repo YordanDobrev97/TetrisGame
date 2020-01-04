@@ -12,7 +12,10 @@ const figure = {
 //import {renderRandomFigure} from '../models/renderFigure.js'
 //let figures = require('../models/renderFigure.js');
 function start() {
-    load();
+    load();    
+    let song = document.getElementById("my_audio");
+
+    console.log(song.play());
     
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d'); 
@@ -28,12 +31,15 @@ function start() {
         ctx.fillRect(figureObj.x + 11, figureObj.y, figureObj.width, figureObj.height);
         ctx.fillRect(figureObj.x + 22, figureObj.y, figureObj.width, figureObj.height);
 
-
-        console.log(figureObj.y);
+        //console.log(figureObj.y);
         const defaultValueMoveDown = 3;
 
         if (figureObj.y < maxMoveDown) {
             figureObj.y += defaultValueMoveDown;
+        } else {
+            // figureObj.x = 95;
+            // figureObj.y = 30;
+            ctx.fillRect(95, 30, 10, 8);
         }
         
         document.onkeydown = (e) => {
