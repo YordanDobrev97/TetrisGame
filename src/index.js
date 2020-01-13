@@ -1,75 +1,63 @@
-const figure = {
-    firstPieceX: 95,
-    secondPieceX: 104,
-    thirdPieceX: 113,
-    firstPieceY: 25,
-    secondPieceY: 36,
-    thirdPieceY: 42,
-    width: 30,
-    height: 30,
-};
+function main() {
+    $('#container').load('game.html');
 
-//import {renderRandomFigure} from '../models/renderFigure.js'
-//let figures = require('../models/renderFigure.js');
-function start() {
-    load();    
-    let song = document.getElementById("my_audio");
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d');
 
-    console.log(song.play());
-    
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d'); 
-    
-    ctx.fillStyle = 'blue';
-    const figureObj = {x: 95, y: 25, width: 10, height: 6};
-
-    const maxMoveDown = 121;
-    function play() {
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        ctx.fillRect(figureObj.x, figureObj.y, figureObj.width, figureObj.height);
-        ctx.fillRect(figureObj.x + 11, figureObj.y, figureObj.width, figureObj.height);
-        ctx.fillRect(figureObj.x + 11, figureObj.y, figureObj.width, figureObj.height);
-        ctx.fillRect(figureObj.x + 22, figureObj.y, figureObj.width, figureObj.height);
-
-        //console.log(figureObj.y);
-        const defaultValueMoveDown = 3;
-
-        if (figureObj.y < maxMoveDown) {
-            figureObj.y += defaultValueMoveDown;
-        } else {
-            // figureObj.x = 95;
-            // figureObj.y = 30;
-            ctx.fillRect(95, 30, 10, 8);
-        }
-        
-        document.onkeydown = (e) => {
-        if (e.keyCode === 37) {
-            figureObj.x -= defaultValueMoveDown;
-        }
-        else if (e.keyCode === 38) {
-            figureObj.y -= defaultValueMoveDown;
-        }
-        else if (e.keyCode === 39) {
-            figureObj.x += defaultValueMoveDown;
-        }
-        else if (e.keyCode === 40) {
-            figureObj.y += defaultValueMoveDown;
-        }
-        
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        ctx.fillRect(figureObj.x, figureObj.y, figureObj.width, figureObj.height);
-    };
-};
-
-setInterval(play, 300);
-    
+    const game = new Game(context);
+    game.startGame();
 }
 
-function load() {
-    $.ajax({
-        url: 'game.html',
-        success: function(data) {
-            $('#container').html(data);
+class Game {
+    constructor(context) {
+        this.context = context;
+        this.figures = {};
+        this.images = [
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg6Jz34T+Ifv3kGIOojBWYBgFkNlgADfTUeTEygjQLC3Iz3Li8G5sanGIauq5gPYwlTdvAtpMLwC6AORlkKjEA2bUYBvDxsYDN+PTpDwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Bb19cYRCW0EGNRrLCgBQXvH3/lQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQAfwJNr7nKi7AAAAABJRU5ErkJggg==',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBgKD1y/D+Ifn7sCIOklQ2YBgFkNlgADSwpK2VkBGkW4udjuLp9GzY1OMW0Pb3AehhjurrBtpMLwC6AORlkKjEA2bUYBvBzcYPN+PjtKwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Br69fYxDV1EKNRrLCgBQXvPv4iQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQBReJAxJHOTqwAAAABJRU5ErkJggg==',
+        ];
+    }
+
+    startGame() {
+        initializationFigures();
+        const image = new Image();
+        image.src = this.images[0];
+        
+        let height = 90;
+        let width = 100;
+
+        this.context.drawImage(image, 80, height, 8, 12);;
+    }
+
+    initializationFigures() {
+        this.figures = {
+            "I": [
+                [true, true, true]
+            ],
+            "J": [
+                [true, true, true],
+                [false, false, true]
+            ],
+            "L": [
+                [true, true, true],
+                [true, false, false]
+            ],
+            "O": [
+                [true, true],
+                [true, true]
+            ],
+            "S": [
+                [false, true, true],
+                [true, true, false]
+            ],
+            "T": [
+                [false, true, false],
+                [true, true, true]
+            ], 
+            "Z": [
+                [true, true, false],
+                [false, true, true]
+            ]
         }
-    });
+    }
 }
