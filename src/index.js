@@ -5,28 +5,41 @@ function main() {
     let context = canvas.getContext('2d');
 
     const game = new Game(context);
-    game.startGame();
 }
 
 class Game {
     constructor(context) {
         this.context = context;
         this.figures = {};
-        this.images = [
-            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg6Jz34T+Ifv3kGIOojBWYBgFkNlgADfTUeTEygjQLC3Iz3Li8G5sanGIauq5gPYwlTdvAtpMLwC6AORlkKjEA2bUYBvDxsYDN+PTpDwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Bb19cYRCW0EGNRrLCgBQXvH3/lQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQAfwJNr7nKi7AAAAABJRU5ErkJggg==',
-            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBgKD1y/D+Ifn7sCIOklQ2YBgFkNlgADSwpK2VkBGkW4udjuLp9GzY1OMW0Pb3AehhjurrBtpMLwC6AORlkKjEA2bUYBvBzcYPN+PjtKwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Br69fYxDV1EKNRrLCgBQXvPv4iQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQBReJAxJHOTqwAAAABJRU5ErkJggg==',
-        ];
+        this.startGame();
     }
 
     startGame() {
-        initializationFigures();
-        const image = new Image();
-        image.src = this.images[0];
+        this.initializationFigures();
         
         let height = 90;
         let width = 100;
+        let widthPosition = 8;
+        let heightPosition = 12;
+        
+        let getTypeFigure = this.figures['Z'];
+        let countRow = getTypeFigure.length;
 
-        this.context.drawImage(image, 80, height, 8, 12);;
+        for (let row = 0; row < countRow; row++) {
+            let countCol = getTypeFigure[row].length;
+            for (let col = 0; col < countCol; col++) {
+                if (!getTypeFigure[row][col]) {
+                    this.context.fillStyle = '#FFFFFF';
+                } else {
+                    this.context.fillStyle = '#000';
+                }
+                
+                this.context.fillRect(width, height, widthPosition, heightPosition);
+                width += 10;
+            }
+            width = 100;
+            height += 15;
+        }
     }
 
     initializationFigures() {
@@ -59,5 +72,8 @@ class Game {
                 [false, true, true]
             ]
         }
+    }
+    drawFigure(image, width, height, widthPosition, heightPosition) {
+        this.context.drawImage(image, width, height, widthPosition, heightPosition);
     }
 }
