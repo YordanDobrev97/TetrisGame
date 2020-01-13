@@ -2,42 +2,58 @@ function main() {
     $('#container').load('game.html');
 
     let canvas = document.getElementById('canvas');
-    let context = canvas.getContext('2d');
-
-    const game = new Game(context);
+    const game = new Game(canvas);
 }
 
 class Game {
-    constructor(context) {
-        this.context = context;
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.context = canvas.getContext('2d');
         this.figures = {};
         this.startGame();
     }
 
     startGame() {
         this.initializationFigures();
-        
-        let height = 90;
-        let width = 100;
-        let widthPosition = 8;
-        let heightPosition = 12;
-        
-        let getTypeFigure = this.figures['Z'];
-        let countRow = getTypeFigure.length;
 
+        let height = 85;
+        let width = 73;
+        let widthPosition = 8;
+        let heightPosition = 13;
+        let getTypeFigure = this.figures['L'];
+
+        
+        this.loopGame(height, width, widthPosition, heightPosition, getTypeFigure);
+    }
+
+    loopGame(height, width, widthPosition, heightPosition,getTypeFigure) {
+        this.clear();
+        this.drawFigure(height, width, widthPosition, heightPosition, getTypeFigure);
+
+        setTimeout(() => {
+            this.loopGame(height + 3, width, widthPosition, heightPosition, getTypeFigure);
+        }, 400);
+    }
+
+    clear() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    drawFigure(height, width, widthPosition, heightPosition, getTypeFigure) {
+        let countRow = getTypeFigure.length;
         for (let row = 0; row < countRow; row++) {
             let countCol = getTypeFigure[row].length;
             for (let col = 0; col < countCol; col++) {
                 if (!getTypeFigure[row][col]) {
-                    this.context.fillStyle = '#FFFFFF';
-                } else {
+                    this.context.fillStyle = '#F8F8FF';
+                }
+                else {
                     this.context.fillStyle = '#000';
                 }
-                
                 this.context.fillRect(width, height, widthPosition, heightPosition);
                 width += 10;
             }
-            width = 100;
+            width = 73;
             height += 15;
         }
     }
@@ -48,12 +64,14 @@ class Game {
                 [true, true, true]
             ],
             "J": [
-                [true, true, true],
-                [false, false, true]
+                [false, true, false],
+                [false, true, false],
+                [true, true, false]
             ],
             "L": [
-                [true, true, true],
-                [true, false, false]
+                [false, true, false],
+                [false, true, false],
+                [false, true, true]
             ],
             "O": [
                 [true, true],
@@ -72,8 +90,5 @@ class Game {
                 [false, true, true]
             ]
         }
-    }
-    drawFigure(image, width, height, widthPosition, heightPosition) {
-        this.context.drawImage(image, width, height, widthPosition, heightPosition);
     }
 }
