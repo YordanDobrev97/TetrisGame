@@ -13,6 +13,7 @@ class Game {
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
         this.figures = {};
+        this.alreadyDrawingFigures = [];
         this.startGame();
     }
 
@@ -50,13 +51,11 @@ class Game {
         const left = 37;
         const right = 39;
         const down = 40;
-        const endRow = 315;
-        const normalStepDown = 3;
+        const endRow = 250;
+        let normalStepDown = 3;
 
         document.onkeydown = (e) => {
-            console.log(e.keyCode);
             if (e.keyCode === left) {
-                console.log(width);
                 if (width > 60) {
                     width -= 3;
                 }
@@ -72,8 +71,17 @@ class Game {
 
         this.drawFigure(height, width - offset, widthPosition, heightPosition, getTypeFigure, offset);
 
+        //is end
         if (height >= endRow) {
             normalStepDown = 0;
+            let currentFigure = {
+                getTypeFigure: {
+                    height: height,
+                    width: width
+                }
+            };
+            this.alreadyDrawingFigures.push(currentFigure);
+            //console.log(this.alreadyDrawingFigures);
         }
         setTimeout(() => {
             this.loopGame(height + normalStepDown, width, widthPosition, heightPosition, getTypeFigure);
