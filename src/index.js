@@ -16,31 +16,48 @@ class Game {
     startGame() {
         this.initializationFigures();
 
+        const defaultWidth = 73;
+
         let height = 85;
-        let width = 73;
+        let width = defaultWidth;
         let widthPosition = 8;
         let heightPosition = 13;
-        let getTypeFigure = this.figures['L'];
-
+        let getTypeFigure = this.figures['T'];
         
         this.loopGame(height, width, widthPosition, heightPosition, getTypeFigure);
     }
 
     loopGame(height, width, widthPosition, heightPosition,getTypeFigure) {
         this.clear();
-        this.drawFigure(height, width, widthPosition, heightPosition, getTypeFigure);
+
+        let offset = -1;
+        document.onkeydown = (e) => {
+            if (e.keyCode === left) {
+                width -= 3;
+            } else if (e.keyCode === right) {
+                height -= 3;
+                width += 5;
+                offset++;
+            }
+        };
+
+        this.drawFigure(height, width - offset, widthPosition, heightPosition, getTypeFigure, offset);
+
+        const left = 37;
+        const right = 39;
 
         setTimeout(() => {
             this.loopGame(height + 3, width, widthPosition, heightPosition, getTypeFigure);
-        }, 400);
+        }, 500);
     }
 
     clear() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    drawFigure(height, width, widthPosition, heightPosition, getTypeFigure) {
+    drawFigure(height, width, widthPosition, heightPosition, getTypeFigure, offset) {
         let countRow = getTypeFigure.length;
+        const defaultWidth = width;
         for (let row = 0; row < countRow; row++) {
             let countCol = getTypeFigure[row].length;
             for (let col = 0; col < countCol; col++) {
@@ -53,7 +70,7 @@ class Game {
                 this.context.fillRect(width, height, widthPosition, heightPosition);
                 width += 10;
             }
-            width = 73;
+            width = defaultWidth;
             height += 15;
         }
     }
