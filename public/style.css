@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 body{
-    background: rgb(255, 255, 255);
+    background-image: url('https://images.squarespace-cdn.com/content/v1/51be3e56e4b09edc5f81e74c/1420522052397-Q0FUORF4G23WDPLQISEA/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbeDbaZv1s3QfpIA4TYnL5Qao8BosUKjCVjCf8TKewJIH3bqxw7fF48mhrq5Ulr0Hg/image-asset.png');
 }
 
 h1 {
     text-align: center;
     padding: 35px;
+    color: white;
 }
 
 #game {

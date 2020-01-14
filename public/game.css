@@ -1,6 +1,7 @@
 body {
 	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-	font-size: .85em;
+    font-size: .85em;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/51be3e56e4b09edc5f81e74c/1420522052397-Q0FUORF4G23WDPLQISEA/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbeDbaZv1s3QfpIA4TYnL5Qao8BosUKjCVjCf8TKewJIH3bqxw7fF48mhrq5Ulr0Hg/image-asset.png');
 }
 
 .container {
@@ -24,3 +25,11 @@ canvas{
     left: 0;
     right: 0;
 }
+
+.controls {
+    padding-left: 360px;
+    padding-top: 130px;
+}
+/* #controls {
+    text-align: center;
+} */

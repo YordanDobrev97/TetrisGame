@@ -37,23 +37,23 @@ class Game {
         const left = 37;
         const right = 39;
         const down = 40;
-        const endRow = 320;
+        const endRow = 315;
         const normalStepDown = 3;
 
         document.onkeydown = (e) => {
             console.log(e.keyCode);
             if (e.keyCode === left) {
-                if (width > 73) {
+                console.log(width);
+                if (width > 60) {
                     width -= 3;
                 }
             } else if (e.keyCode === right) {
-                if (width < 137) {
+                if (width < 120) {
                     width += 5;
                 }
                 offset++;
             } else if (e.keyCode === down) {
                 height += 10;
-                console.log(height);
             }
         };
 

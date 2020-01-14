@@ -1,5 +1,6 @@
 body{
-	background-color:#737373;
+	/* background-color:#000000; */
+	background-color: rgb(235, 195, 195);
 }
 *{
 	margin:0;
