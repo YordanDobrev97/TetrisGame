@@ -31,25 +31,30 @@ class Game {
         this.clear();
 
         let offset = -1;
+        const left = 37;
+        const right = 39;
+        const down = 40;
+        const endRow = 315;
+        const normalStepDown = 3;
+
         document.onkeydown = (e) => {
+            console.log(e.keyCode);
             if (e.keyCode === left) {
-                width -= 3;
+                if (width > 73) {
+                    width -= 3;
+                }
             } else if (e.keyCode === right) {
+                if (width <= 137) {
+                    width += 5;
+                }
                 height -= 3;
-                width += 5;
                 offset++;
+            } else if (e.keyCode === down) {
+                height += 10;
             }
         };
 
         this.drawFigure(height, width - offset, widthPosition, heightPosition, getTypeFigure, offset);
-
-        const left = 37;
-        const right = 39;
-        const endRow = 315;
-        const normalStepDown = 3;
-
-        console.log(`Height: ${height}`);
-        console.log(`EndRow: ${endRow}`);
 
         if (height >= endRow) {
             normalStepDown = 0;
