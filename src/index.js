@@ -45,9 +45,17 @@ class Game {
 
         const left = 37;
         const right = 39;
+        const endRow = 315;
+        const normalStepDown = 3;
 
+        console.log(`Height: ${height}`);
+        console.log(`EndRow: ${endRow}`);
+
+        if (height >= endRow) {
+            normalStepDown = 0;
+        }
         setTimeout(() => {
-            this.loopGame(height + 3, width, widthPosition, heightPosition, getTypeFigure);
+            this.loopGame(height + normalStepDown, width, widthPosition, heightPosition, getTypeFigure);
         }, 500);
     }
 
