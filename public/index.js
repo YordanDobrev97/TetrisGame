@@ -25,9 +25,22 @@ class Game {
         let width = defaultWidth;
         let widthPosition = 8;
         let heightPosition = 13;
-        let getTypeFigure = this.figures['T'];
+
+        let randomFig = this.getRandomFigure();
+        console.log(randomFig);
+        let getTypeFigure = this.figures[randomFig];
         
         this.loopGame(height, width, widthPosition, heightPosition, getTypeFigure);
+    }
+
+    getRandomFigure() {
+        let items = ['T', 'J', 'L', 'O', 'S', 'T', 'Z'];
+        let rand = Math.random();
+        let totalItems = items.length;
+        let randomIndex = Math.floor(rand * totalItems);
+        let randomFigure = items[randomIndex];
+
+        return randomFigure;
     }
 
     loopGame(height, width, widthPosition, heightPosition,getTypeFigure) {
