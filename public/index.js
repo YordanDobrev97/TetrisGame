@@ -1,6 +1,9 @@
 function main() {
     $('#container').load('game.html');
 
+    let song = document.getElementById("my_audio");
+
+    song.play();
     let canvas = document.getElementById('canvas');
     const game = new Game(canvas);
 }
@@ -34,7 +37,7 @@ class Game {
         const left = 37;
         const right = 39;
         const down = 40;
-        const endRow = 315;
+        const endRow = 320;
         const normalStepDown = 3;
 
         document.onkeydown = (e) => {
@@ -44,13 +47,13 @@ class Game {
                     width -= 3;
                 }
             } else if (e.keyCode === right) {
-                if (width <= 137) {
+                if (width < 137) {
                     width += 5;
                 }
-                height -= 3;
                 offset++;
             } else if (e.keyCode === down) {
                 height += 10;
+                console.log(height);
             }
         };
 
