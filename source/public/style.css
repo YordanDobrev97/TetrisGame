@@ -10,20 +10,33 @@ h1 {
     color: white;
 }
 
-#game {
-    padding: 16px;
-    width: 150px;
-    margin: 25px 50px;
+.wrapper {
     text-align: center;
-    position:relative;
-    height:100px; 
-    top:1%; 
-    left:42%;
 }
 
-#container {
-    display:flex;
-    border-style: groove;
-    height: 430px;
-    background-color: rgb(194, 212, 228);
+.wrapper img {
+    width: 500px;
+    height: 250px;
+}
+
+button {
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 30px;
+    background-color: cadetblue;
+    width: 150px;
+    height: 30px;
+}
+
+.container {
+    margin-left: 28em;
+    border: 2px solid black;
+}
+
+canvas { 
+    border: 1px solid black; 
+    background-color: white;
+    width: 600px;
+    height: 600px;
+    margin: 27px;
 }
