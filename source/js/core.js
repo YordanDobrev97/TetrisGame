@@ -24,11 +24,11 @@ class Controller {
         ctx.clearRect(0, 0, cnvs.width, cnvs.height)
 
         document.onkeydown = (e) => {
-          if (e.keyCode === defaults.default.keyCodeLeft && initialX > defaults.default.endColLeft && isNotEndRow(initialY)) {
+          if (isMoveLeft(e, initialX, initialY)) {
               initialX -= defaults.default.slowFalling;
-          } else if (e.keyCode === defaults.default.keyCodeRight && initialX < defaults.default.endColRight && isNotEndRow(initialY)) {
+          } else if (isMoveRight(e, initialX, initialY)) {
             initialX += defaults.default.slowFalling;
-          } else if (e.keyCode === defaults.default.keyCodeDown && isNotEndRow(initialY)) {
+          } else if (isMoveDown(e, initialY)) {
             initialY += defaults.default.slowFalling;
           }
         };
@@ -45,6 +45,18 @@ class Controller {
 }
 
 export default Controller;
+
+function isMoveDown(e, initialY) {
+  return e.keyCode === defaults.default.keyCodeDown && isNotEndRow(initialY);
+}
+
+function isMoveRight(e, initialX, initialY) {
+  return e.keyCode === defaults.default.keyCodeRight && initialX < defaults.default.endColRight && isNotEndRow(initialY);
+}
+
+function isMoveLeft(e, initialX, initialY) {
+  return e.keyCode === defaults.default.keyCodeLeft && initialX > defaults.default.endColLeft && isNotEndRow(initialY);
+}
 
 function isNotEndRow(initialY) {
   return initialY < defaults.default.endRow;
