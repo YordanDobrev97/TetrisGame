@@ -22,19 +22,33 @@ class Controller {
 
       setInterval(function(){
         ctx.clearRect(0, 0, cnvs.width, cnvs.height)
+
+        document.onkeydown = (e) => {
+          if (e.keyCode === defaults.default.keyCodeLeft && initialX > defaults.default.endColLeft && isNotEndRow(initialY)) {
+              initialX -= defaults.default.slowFalling;
+          } else if (e.keyCode === defaults.default.keyCodeRight && initialX < defaults.default.endColRight && isNotEndRow(initialY)) {
+            initialX += defaults.default.slowFalling;
+          } else if (e.keyCode === defaults.default.keyCodeDown && isNotEndRow(initialY)) {
+            initialY += defaults.default.slowFalling;
+          }
+        };
+
         painter.drawFigure(ctx, defaults.default.figure, initialX, initialY, defaults.default.initialWidth, defaults.default.initialHeight);
         
         if (initialY < defaults.default.endRow) {
           initialY += defaults.default.slowFalling;
         }
       }, defaults.default.standardTime);
-      
       document.getElementById('background-music').play(); // play music of background      
     });
   }
 }
 
 export default Controller;
+
+function isNotEndRow(initialY) {
+  return initialY < defaults.default.endRow;
+}
 
 function setupCanvas(cnvs) {
   cnvs.style.width = defaults.default.canvasWidth;

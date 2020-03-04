@@ -1,5 +1,6 @@
 class Painter {
     drawFigure(ctx, figure, positionX, positionY, width, height) {
+        console.log(this);
         const defaultX = positionX;
 
         const defaultIncrementX = 9;

@@ -9,7 +9,12 @@ export default {
     initialWidth: 8,
     initialHeight: 5,
     color: 'white',
-    endRow: 127,
+    endRow: 125,
     slowFalling: 5,
     standardTime: 900,
+    keyCodeLeft: 37,
+    keyCodeRight: 39,
+    keyCodeDown: 40,
+    endColLeft: -8,
+    endColRight: 270,
 };
